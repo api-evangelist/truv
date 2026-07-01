@@ -1,0 +1,110 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Truv
+providerId: truv
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Payroll
+- Income Verification
+- Employment Verification
+- Consumer Permissioned Data
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Truv spend. Truv bills under a sales-negotiated commercial
+  agreement, typically per successful verification or per completed consumer
+  connection (link), priced by product - employment verification, income
+  verification, deposit switch, paystatements, and insurance. The sandbox
+  is free; production is metered per successful outcome. There is no public
+  self-service price list, so cost management centers on maximizing
+  successful-connection conversion and avoiding wasted (failed) link
+  attempts.
+notes: >-
+  Per-verification rates are sales-quoted and subject to the commercial
+  agreement; verify against your Truv order form during reconciliation.
+sources:
+- https://truv.com/pricing
+- https://docs.truv.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Truv
+serviceCategory: Financial Data and Verification
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Truv API
+  ServiceCategory: Financial Data and Verification
+  ProviderName: Truv
+  PublisherName: Truv
+  InvoiceIssuerName: Truv
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: employment_verifications
+  description: Successful employment verifications completed via a link.
+  unit: verifications
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: income_verifications
+  description: Successful income verifications completed via a link.
+  unit: verifications
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: deposit_switches
+  description: Completed direct-deposit switches.
+  unit: switches
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: paystatement_retrievals
+  description: Paystatement / admin data retrievals.
+  unit: retrievals
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: insurance_verifications
+  description: Insurance data verifications completed via a link.
+  unit: verifications
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: completed_links
+  description: Consumer connections (links) that successfully authenticated to a payroll/employer source.
+  unit: links
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track successful vs. failed link attempts and per-product verification counts against the order form.
+- name: Allocation
+  description: Tag access keys / bridge tokens per workflow or team and map to internal cost centers.
+- name: Optimization
+  description: Maximize connection success rate (provider coverage, retries, consumer UX) to avoid paying for or repeating failed verifications; use webhooks to avoid redundant report pulls.
+- name: Accountability
+  description: Assign owners per integration and review verification spend against budget and conversion.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

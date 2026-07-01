@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Truv
+providerId: truv
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Payroll
+- Income Verification
+- Employment Verification
+- Consumer Permissioned Data
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Truv's REST API is authenticated per-account with the X-Access-Client-Id
+  and X-Access-Secret header pair. Truv does not publish specific numeric
+  rate limits in its public documentation; limits are enforced per access
+  key and coordinated with customers as part of the commercial agreement.
+  Long-running verification work is asynchronous - clients create a link,
+  poll link/report endpoints or subscribe to webhooks, rather than holding
+  a request open. Specific per-endpoint values are not reconciled here.
+notes: >-
+  Verify per-endpoint and per-account limits with Truv on reconciliation.
+  Prefer webhooks over aggressive polling to stay within limits.
+sources:
+- https://docs.truv.com
+- https://docs.truv.com/reference
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Access Key
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Enforced per X-Access-Client-Id; not publicly published.
+- name: Concurrent Links
+  scope: account
+  metric: links
+  limit: see provider documentation
+  notes: Number of in-flight consumer connections; coordinated with the account.
+- name: Webhook Delivery
+  scope: account
+  metric: events
+  limit: not applicable
+  notes: Events are pushed to the configured webhook URL; retried on failure.
+policies:
+- name: Prefer Webhooks
+  description: Subscribe to webhook events (login, task/verification completion) rather than polling report endpoints to reduce request volume.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Asynchronous Verification
+  description: Verification is asynchronous - create a link, then read the report once the associated task completes rather than blocking on a single request.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

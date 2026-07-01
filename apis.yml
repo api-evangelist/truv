@@ -1,0 +1,232 @@
+aid: truv
+url: https://raw.githubusercontent.com/api-evangelist/truv/refs/heads/main/apis.yml
+name: Truv
+kind: company
+description: Truv provides consumer-permissioned access to payroll, income, and
+  employment data. Its platform lets applicants connect their payroll accounts to
+  instantly verify income and employment, retrieve pay statements, and switch
+  direct deposit, replacing manual document collection and legacy verification
+  services across lending, background screening, and fintech workflows.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Income Verification
+- Employment Verification
+- Payroll
+- Direct Deposit
+- Consumer Permissioned Data
+- Fintech
+created: '2026-07-01'
+modified: '2026-07-01'
+specificationVersion: '0.19'
+apis:
+- aid: truv:users
+  name: Truv Users API
+  tags:
+  - Users
+  - Consumers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/users_create
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Create and manage the end users (consumers) whose payroll, income,
+    and employment data will be connected and verified through Truv.
+- aid: truv:bridge-tokens
+  name: Truv Bridge Tokens API
+  tags:
+  - Bridge Token
+  - Truv Bridge
+  - Access Tokens
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/users_tokens_create
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/users_tokens_create
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Mint short-lived bridge tokens that initialize the Truv Bridge
+    front-end widget, plus link-access tokens for embedding connect flows.
+- aid: truv:links
+  name: Truv Links API
+  tags:
+  - Links
+  - Connections
+  - Refresh
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_list
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_list
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: List, retrieve, and delete links that represent a consumer's
+    connection to a payroll or financial data source, and trigger refresh tasks
+    to pull fresh data.
+- aid: truv:employment-verification
+  name: Truv Employment Verification API
+  tags:
+  - Employment Verification
+  - VOE
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_employment_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_employment_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve verification-of-employment data and reports for a
+    connected link, including employer, job title, status, and tenure.
+- aid: truv:income-verification
+  name: Truv Income Verification API
+  tags:
+  - Income Verification
+  - VOI
+  - Income Insights
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_income_report_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_income_report_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve income reports, income transaction reports, and income
+    insights derived from a consumer's connected payroll and financial accounts.
+- aid: truv:pay-statements
+  name: Truv Pay Statements API
+  tags:
+  - Pay Statements
+  - Paystubs
+  - Documents
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_statements_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_statements_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve individual pay statements (paystub documents) associated
+    with a connected payroll link.
+- aid: truv:direct-deposit-switch
+  name: Truv Direct Deposit Switch API
+  tags:
+  - Direct Deposit
+  - Deposit Switch
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve direct deposit and deposit switch reports that let
+    consumers move or update the account where their paycheck is deposited.
+- aid: truv:payroll-shifts
+  name: Truv Payroll & Shifts API
+  tags:
+  - Payroll
+  - Shifts
+  - Gig
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_shifts_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_shifts_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve shift-level payroll data from connected platforms,
+    supporting gig and hourly worker income and employment use cases.
+- aid: truv:insurance
+  name: Truv Insurance API
+  tags:
+  - Insurance
+  - Auto Insurance
+  - Home Insurance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_insurance_report_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_insurance_report_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve insurance reports for a connected link, including auto and
+    home insurance policy data pulled with consumer permission.
+- aid: truv:orders
+  name: Truv Orders API
+  tags:
+  - Orders
+  - Verifications
+  - Certifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/orders_create
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/orders_create
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Create and manage verification orders end to end - lookup, update,
+    cancel, add employers, and retrieve order events and certifications for
+    fulfillment-style verification workflows.
+- aid: truv:identity-banking
+  name: Truv Identity & Banking API
+  tags:
+  - Identity
+  - Banking
+  - VOA
+  - Transactions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/links_identity_retrieve
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/links_identity_retrieve
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Retrieve consumer identity plus verification-of-assets banking data
+    - auth, balances, bank accounts and statements, transactions, investments,
+    and liabilities - from connected accounts.
+- aid: truv:webhooks
+  name: Truv Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.truv.com/reference/webhooks_list
+  baseURL: https://prod.truv.com/v1
+  properties:
+  - url: https://docs.truv.com/reference/webhooks_list
+    type: Documentation
+  - url: openapi/truv-openapi.yml
+    type: OpenAPI
+  description: Register and manage webhook endpoints to receive HMAC-signed event
+    notifications as links, orders, and reports complete asynchronously.
+common:
+- type: GitHubOrganization
+  url: https://github.com/truvhq
+- type: LinkedIn
+  url: https://www.linkedin.com/company/truvhq
+- type: Website
+  url: https://truv.com
+- type: Documentation
+  url: https://docs.truv.com
+- type: Plans
+  url: plans/truv-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/truv-rate-limits.yml
+- type: FinOps
+  url: finops/truv-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

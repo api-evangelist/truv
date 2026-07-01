@@ -1,0 +1,146 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Truv
+providerId: truv
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Payroll
+- Income Verification
+- Employment Verification
+- Consumer Permissioned Data
+- Plans
+description: >-
+  Truv does not publish a public self-service price list. Access is
+  sales-quoted: prospective customers request access, receive sandbox
+  credentials to build against, and negotiate a commercial agreement for
+  production. Pricing is typically per successful verification / per
+  completed connection (link) with volume-based commitments, and varies by
+  product (employment verification, income verification, deposit switch,
+  paystatements, insurance). Contact Truv sales for a quote.
+notes: >-
+  Prices below are placeholders (sales-quoted). Verify exact packaging and
+  per-verification rates directly with Truv on reconciliation.
+sources:
+- https://truv.com/pricing
+- https://truv.com/contact
+- https://docs.truv.com
+plans:
+- id: truv-sandbox
+  name: Sandbox
+  type: free
+  description: >-
+    Free sandbox environment with test credentials (X-Access-Client-Id +
+    X-Access-Secret) and sandbox login providers for building and testing
+    the full Bridge + verification flow before going live.
+  entries:
+  - label: Sandbox Access
+    name: sandbox
+    type: flat
+    metric: environment
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Bridge Tokens
+  - name: Users
+  - name: Links
+  - name: Employment Verification
+  - name: Income Verification
+  - name: Paystatements
+  - name: Webhooks
+- id: truv-production
+  name: Production
+  type: usage
+  description: >-
+    Production access under a commercial agreement. Billed per successful
+    verification / completed link, priced by product and negotiated by
+    volume. Contact sales.
+  entries:
+  - label: Employment Verification
+    name: employment_verification
+    type: usage
+    metric: verifications
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: sales-quoted (per successful verification)
+    userMultiplied: false
+  - label: Income Verification
+    name: income_verification
+    type: usage
+    metric: verifications
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: sales-quoted (per successful verification)
+    userMultiplied: false
+  - label: Deposit Switch
+    name: deposit_switch
+    type: usage
+    metric: switches
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: sales-quoted (per completed switch)
+    userMultiplied: false
+  - label: Paystatements
+    name: paystatements
+    type: usage
+    metric: retrievals
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: sales-quoted
+    userMultiplied: false
+  - label: Insurance
+    name: insurance
+    type: usage
+    metric: verifications
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: sales-quoted
+    userMultiplied: false
+  elements:
+  - name: Employment Verification
+  - name: Income Verification
+  - name: Deposit Switch
+  - name: Paystatements
+  - name: Payroll and Timesheets
+  - name: Insurance
+- id: truv-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, dedicated support, custom coverage, and negotiated
+    terms for lenders, banks, background screeners, and platforms. Contact
+    Truv sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+  - name: Custom Coverage and SLAs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

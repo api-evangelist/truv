@@ -1,0 +1,111 @@
+aid: truv
+name: Truv
+review:
+  question: Does Truv expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created for Truv. Truv's asynchronous surface is
+    delivered as HMAC-signed HTTP webhooks (server-to-server callbacks), not as
+    a streaming transport. HTTP webhook callbacks are outside the AsyncAPI
+    modeling scope applied here (which covers streaming transports such as
+    Server-Sent Events and WebSocket), and no WebSocket or SSE surface is
+    documented, so no AsyncAPI spec was authored.
+findings:
+  summary: |
+    Truv does not publish a documented public WebSocket API. The Truv platform
+    exposes a REST (HTTPS) API under https://prod.truv.com/v1 secured with dual
+    API-key headers (X-Access-Client-Id and X-Access-Secret). Asynchronous
+    events - such as link completion, order status changes, and report
+    availability - are delivered via HTTP webhooks (POST callbacks to a
+    consumer-registered URL), not via WebSocket. Each webhook payload is signed
+    with an HMAC-SHA256 signature carried in the X-WEBHOOK-SIGN header, formatted
+    as `v1={hmac-sha256 of the raw request body}`, allowing recipients to verify
+    authenticity. No realtime, bidirectional WebSocket (ws:// or wss://) or
+    Server-Sent Events endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://prod.truv.com/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: >-
+        Asynchronous notifications delivered as HTTP POST callbacks to a
+        consumer-registered endpoint. Payloads are HMAC-SHA256 signed via the
+        X-WEBHOOK-SIGN header (format v1={hmac-sha256 of raw body}). Not
+        WebSocket, not SSE.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        No WebSocket endpoint is documented anywhere in Truv's API reference or
+        product documentation as of the review date.
+  authentication:
+    - type: apiKey
+      header: X-Access-Client-Id
+      documented: true
+    - type: apiKey
+      header: X-Access-Secret
+      documented: true
+  webhookSignature:
+    header: X-WEBHOOK-SIGN
+    format: v1={hmac-sha256 of the raw request body}
+    algorithm: HMAC-SHA256
+  endpointsConfirmedRest:
+    - POST https://prod.truv.com/v1/users/
+    - GET  https://prod.truv.com/v1/users/
+    - GET  https://prod.truv.com/v1/users/{user_id}/
+    - PATCH https://prod.truv.com/v1/users/{user_id}/
+    - DELETE https://prod.truv.com/v1/users/{user_id}/
+    - POST https://prod.truv.com/v1/users/{user_id}/tokens/
+    - POST https://prod.truv.com/v1/link-access-tokens/
+    - GET  https://prod.truv.com/v1/links/
+    - GET  https://prod.truv.com/v1/links/{link_id}/
+    - DELETE https://prod.truv.com/v1/links/{link_id}/
+    - POST https://prod.truv.com/v1/refresh/tasks/
+    - GET  https://prod.truv.com/v1/refresh/tasks/{task_id}/
+    - GET  https://prod.truv.com/v1/links/{link_id}/employment/
+    - GET  https://prod.truv.com/v1/links/{link_id}/employments/
+    - GET  https://prod.truv.com/v1/links/{link_id}/employment/report/
+    - GET  https://prod.truv.com/v1/links/{link_id}/income/report/
+    - GET  https://prod.truv.com/v1/links/{link_id}/income/transactions/reports/
+    - GET  https://prod.truv.com/v1/links/{link_id}/statements/{statement_id}/
+    - GET  https://prod.truv.com/v1/links/{link_id}/direct_deposit/report/
+    - GET  https://prod.truv.com/v1/users/{user_id}/deposit_switch/report/
+    - GET  https://prod.truv.com/v1/links/{link_id}/shifts/
+    - GET  https://prod.truv.com/v1/links/{link_id}/insurance/report/
+    - GET  https://prod.truv.com/v1/links/{link_id}/identity/
+    - GET  https://prod.truv.com/v1/links/{link_id}/transactions/
+    - POST https://prod.truv.com/v1/orders/
+    - GET  https://prod.truv.com/v1/orders/{id}/
+    - GET  https://prod.truv.com/v1/orders/{id}/events/
+    - GET  https://prod.truv.com/v1/tasks/
+    - GET  https://prod.truv.com/v1/webhooks/
+    - POST https://prod.truv.com/v1/webhooks/
+    - GET  https://prod.truv.com/v1/webhook-requests/
+sources:
+  - url: https://docs.truv.com
+    type: Documentation
+    note: Overview documents the REST base URL https://prod.truv.com/v1 and dual API-key header auth; no WebSocket mentioned.
+  - url: https://docs.truv.com/reference
+    type: APIReference
+    note: All documented endpoints are HTTPS REST.
+  - url: https://docs.truv.com/docs/webhooks
+    type: Documentation
+    note: Asynchronous events are delivered as HMAC-signed HTTP webhooks (X-WEBHOOK-SIGN header), not WebSocket.
+  - url: https://docs.truv.com/openapi.yaml
+    type: OpenAPI
+    note: Truv publishes an OpenAPI definition describing its REST surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. Truv's only asynchronous
+    delivery mechanism is HMAC-signed HTTP webhooks, which fall outside the
+    AsyncAPI streaming-transport scope applied here, so no AsyncAPI document
+    was authored. The REST API is captured in openapi/truv-openapi.yml and the
+    webhook management endpoints are represented there.
