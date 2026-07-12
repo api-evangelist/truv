@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/truv-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: accessClientId
+  type: apiKey
+  in: header
+  parameter: X-Access-Client-Id
+  description: Your Truv access client ID.
+  sources:
+  - openapi/truv-openapi.yml
+- name: accessSecret
+  type: apiKey
+  in: header
+  parameter: X-Access-Secret
+  description: Your Truv access secret.
+  sources:
+  - openapi/truv-openapi.yml

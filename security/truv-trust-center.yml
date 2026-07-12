@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://truv.com/commitment-to-security-and-privacy
+url: https://truv.com/commitment-to-security-and-privacy
+certifications:
+- SOC 2
+- GDPR
+evidence:
+- source: https://truv.com/commitment-to-security-and-privacy
+  keywords:
+  - soc 2
+  - soc2
+  - gdpr

@@ -213,6 +213,14 @@ apis:
   description: Register and manage webhook endpoints to receive HMAC-signed event
     notifications as links, orders, and reports complete asynchronously.
 common:
+- type: TrustCenter
+  url: security/truv-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/truv-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/truv-domain-security.yml
+- type: Authentication
+  url: authentication/truv-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/truvhq
 - type: LinkedIn
@@ -227,6 +235,8 @@ common:
   url: rate-limits/truv-rate-limits.yml
 - type: FinOps
   url: finops/truv-finops.yml
+- url: https://truv.com/blog/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
