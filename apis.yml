@@ -213,6 +213,8 @@ apis:
   description: Register and manage webhook endpoints to receive HMAC-signed event
     notifications as links, orders, and reports complete asynchronously.
 common:
+- type: AgenticAccess
+  url: agentic-access/truv-agentic-access.yml
 - type: TrustCenter
   url: security/truv-trust-center.yml
 - type: VulnerabilityDisclosure
