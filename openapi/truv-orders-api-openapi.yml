@@ -1,0 +1,229 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Orders API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Orders
+  description: Verification orders and their lifecycle.
+paths:
+  /v1/orders/:
+    post:
+      operationId: createOrder
+      tags:
+      - Orders
+      summary: Create an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/lookup/:
+    post:
+      operationId: lookupOrder
+      tags:
+      - Orders
+      summary: Look up an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrder
+      tags:
+      - Orders
+      summary: Retrieve an order.
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    post:
+      operationId: updateOrderPost
+      tags:
+      - Orders
+      summary: Update an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    patch:
+      operationId: patchOrder
+      tags:
+      - Orders
+      summary: Partially update an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/cancel/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    post:
+      operationId: cancelOrder
+      tags:
+      - Orders
+      summary: Cancel an order.
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/employers/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    post:
+      operationId: addOrderEmployers
+      tags:
+      - Orders
+      summary: Add employers to an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/events/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrderEvents
+      tags:
+      - Orders
+      summary: Retrieve events for an order.
+      responses:
+        '200':
+          description: A list of order events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /v1/orders/{id}/certifications/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrderCertifications
+      tags:
+      - Orders
+      summary: Retrieve certifications for an order.
+      responses:
+        '200':
+          description: A list of certifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        employers:
+          type: array
+          items:
+            type: object
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+  parameters:
+    OrderId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the resource.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

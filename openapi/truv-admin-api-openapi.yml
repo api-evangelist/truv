@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Admin
+  description: Administrative access key management.
+paths:
+  /v1/keys/:
+    post:
+      operationId: createKey
+      tags:
+      - Admin
+      summary: Create an access key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: An access key.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keys/deactivate/:
+    post:
+      operationId: deactivateKey
+      tags:
+      - Admin
+      summary: Deactivate an access key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Key deactivated.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

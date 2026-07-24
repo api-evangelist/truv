@@ -1,0 +1,111 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Companies & Providers API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Companies & Providers
+  description: Employer companies, mappings, and data providers.
+paths:
+  /v1/companies/:
+    post:
+      operationId: createCompany
+      tags:
+      - Companies & Providers
+      summary: Create a company.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: A company.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/companies/{id}/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getCompany
+      tags:
+      - Companies & Providers
+      summary: Retrieve a company.
+      responses:
+        '200':
+          description: A company.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/company-mappings-search/:
+    get:
+      operationId: searchCompanyMappings
+      tags:
+      - Companies & Providers
+      summary: Search company mappings.
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Search query.
+      responses:
+        '200':
+          description: Company mapping search results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /v1/providers/{id}/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getProvider
+      tags:
+      - Companies & Providers
+      summary: Retrieve a provider.
+      responses:
+        '200':
+          description: A provider.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    OrderId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the resource.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

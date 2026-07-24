@@ -1,0 +1,114 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Templates API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Templates
+  description: Reusable configuration templates.
+paths:
+  /v1/templates/:
+    get:
+      operationId: listTemplates
+      tags:
+      - Templates
+      summary: List templates.
+      responses:
+        '200':
+          description: A list of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+    post:
+      operationId: createTemplate
+      tags:
+      - Templates
+      summary: Create a template.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: A template.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/templates/{id}/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getTemplate
+      tags:
+      - Templates
+      summary: Retrieve a template.
+      responses:
+        '200':
+          description: A template.
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      operationId: updateTemplate
+      tags:
+      - Templates
+      summary: Update a template.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: A template.
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      operationId: deleteTemplate
+      tags:
+      - Templates
+      summary: Delete a template.
+      responses:
+        '204':
+          description: Template deleted.
+components:
+  parameters:
+    OrderId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the resource.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

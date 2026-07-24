@@ -1,0 +1,86 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Tasks API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Tasks
+  description: Asynchronous task tracking.
+paths:
+  /v1/tasks/:
+    get:
+      operationId: listTasks
+      tags:
+      - Tasks
+      summary: List tasks.
+      responses:
+        '200':
+          description: A list of tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /v1/tasks/{id}/:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getTask
+      tags:
+      - Tasks
+      summary: Retrieve a task.
+      responses:
+        '200':
+          description: A task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        task_id:
+          type: string
+        status:
+          type: string
+        product_type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+  parameters:
+    OrderId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the resource.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

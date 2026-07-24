@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Links API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Links
+  description: Manage connections between a consumer and a payroll or financial data source.
+paths:
+  /v1/links/:
+    get:
+      operationId: listLinks
+      tags:
+      - Links
+      summary: List links.
+      responses:
+        '200':
+          description: A list of links.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+  /v1/links/{link_id}/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getLink
+      tags:
+      - Links
+      summary: Retrieve a link.
+      responses:
+        '200':
+          description: A link object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+    delete:
+      operationId: deleteLink
+      tags:
+      - Links
+      summary: Delete a link.
+      responses:
+        '204':
+          description: Link deleted.
+  /v1/refresh/tasks/:
+    post:
+      operationId: createRefreshTask
+      tags:
+      - Links
+      summary: Trigger a refresh task for a link.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+      responses:
+        '200':
+          description: A refresh task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /v1/refresh/tasks/{task_id}/:
+    parameters:
+    - $ref: '#/components/parameters/TaskId'
+    get:
+      operationId: getRefreshTask
+      tags:
+      - Links
+      summary: Retrieve a refresh task.
+      responses:
+        '200':
+          description: A refresh task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        link_id:
+          type: string
+        user_id:
+          type: string
+        status:
+          type: string
+        provider_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Task:
+      type: object
+      properties:
+        task_id:
+          type: string
+        status:
+          type: string
+        product_type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+  parameters:
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the task.
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

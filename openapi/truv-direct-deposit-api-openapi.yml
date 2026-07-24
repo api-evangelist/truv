@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Direct Deposit API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Direct Deposit
+  description: Direct deposit and deposit switch reports.
+paths:
+  /v1/links/{link_id}/direct_deposit/report/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getDirectDepositReport
+      tags:
+      - Direct Deposit
+      summary: Retrieve the direct deposit report for a link.
+      responses:
+        '200':
+          description: A direct deposit report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/users/{user_id}/deposit_switch/report/:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getDepositSwitchReport
+      tags:
+      - Direct Deposit
+      summary: Retrieve the deposit switch report for a user.
+      responses:
+        '200':
+          description: A deposit switch report.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

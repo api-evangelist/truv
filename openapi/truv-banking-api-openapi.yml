@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Banking API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Banking
+  description: Verification-of-assets banking data for a connected link.
+paths:
+  /v1/links/{link_id}/auth/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankingAuth
+      tags:
+      - Banking
+      summary: Retrieve banking auth data for a link.
+      responses:
+        '200':
+          description: Banking auth data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/balances/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankingBalances
+      tags:
+      - Banking
+      summary: Retrieve account balances for a link.
+      responses:
+        '200':
+          description: Account balances.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/bank_accounts/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankAccounts
+      tags:
+      - Banking
+      summary: Retrieve bank accounts for a link.
+      responses:
+        '200':
+          description: Bank accounts.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/bank_statements/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankStatements
+      tags:
+      - Banking
+      summary: Retrieve bank statements for a link.
+      responses:
+        '200':
+          description: Bank statements.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/transactions/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getTransactions
+      tags:
+      - Banking
+      summary: Retrieve transactions for a link.
+      responses:
+        '200':
+          description: Transactions.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/investments/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getInvestments
+      tags:
+      - Banking
+      summary: Retrieve investments for a link.
+      responses:
+        '200':
+          description: Investments.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/liabilities/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getLiabilities
+      tags:
+      - Banking
+      summary: Retrieve liabilities for a link.
+      responses:
+        '200':
+          description: Liabilities.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

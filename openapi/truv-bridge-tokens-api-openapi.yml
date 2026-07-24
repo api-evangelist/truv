@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Bridge Tokens API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Bridge Tokens
+  description: Mint tokens that initialize the Truv Bridge widget and connect flows.
+paths:
+  /v1/users/{user_id}/tokens/:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    post:
+      operationId: createBridgeToken
+      tags:
+      - Bridge Tokens
+      summary: Create a bridge token for a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BridgeTokenRequest'
+      responses:
+        '200':
+          description: A bridge token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeToken'
+  /v1/link-access-tokens/:
+    post:
+      operationId: createLinkAccessToken
+      tags:
+      - Bridge Tokens
+      summary: Create a link-access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link_id:
+                  type: string
+      responses:
+        '200':
+          description: A link-access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeToken'
+components:
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+  schemas:
+    BridgeToken:
+      type: object
+      properties:
+        bridge_token:
+          type: string
+        user_id:
+          type: string
+        expiration:
+          type: string
+          format: date-time
+    BridgeTokenRequest:
+      type: object
+      properties:
+        product_type:
+          type: string
+          description: The Truv product to initialize, for example employment or income.
+        tracking_info:
+          type: string
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.

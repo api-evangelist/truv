@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  title: Truv Admin Insurance API
+  description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+- url: https://prod.truv.com
+  description: Truv production API
+security:
+- accessClientId: []
+  accessSecret: []
+tags:
+- name: Insurance
+  description: Insurance reports including auto and home.
+paths:
+  /v1/links/{link_id}/insurance/report/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getInsuranceReport
+      tags:
+      - Insurance
+      summary: Retrieve the insurance report for a link.
+      responses:
+        '200':
+          description: An insurance report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/insurance/auto/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getAutoInsuranceReport
+      tags:
+      - Insurance
+      summary: Retrieve the auto insurance report for a link.
+      responses:
+        '200':
+          description: An auto insurance report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/insurance/home/:
+    parameters:
+    - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getHomeInsuranceReport
+      tags:
+      - Insurance
+      summary: Retrieve the home insurance report for a link.
+      responses:
+        '200':
+          description: A home insurance report.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.
