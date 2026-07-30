@@ -7,7 +7,20 @@ description: Truv provides consumer-permissioned access to payroll, income, and
   instantly verify income and employment, retrieve pay statements, and switch
   direct deposit, replacing manual document collection and legacy verification
   services across lending, background screening, and fintech workflows.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/truv.png
 tags:
 - Income Verification
 - Employment Verification
@@ -19,199 +32,686 @@ created: '2026-07-01'
 modified: '2026-07-01'
 specificationVersion: '0.19'
 apis:
-- aid: truv:users
-  name: Truv Users API
-  tags:
-  - Users
-  - Consumers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: truv:truv-admin-api
+  name: Truv Admin API
+  description: Administrative access key management.
   humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
+  tags:
+  - Admin
   properties:
-  - url: https://docs.truv.com/reference/users_create
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Create and manage the end users (consumers) whose payroll, income,
-    and employment data will be connected and verified through Truv.
-- aid: truv:bridge-tokens
+  - type: OpenAPI
+    url: openapi/truv-admin-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-banking-api
+  name: Truv Banking API
+  description: Verification-of-assets banking data for a connected link.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Banking
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-banking-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-bridge-tokens-api
   name: Truv Bridge Tokens API
-  tags:
-  - Bridge Token
-  - Truv Bridge
-  - Access Tokens
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/users_tokens_create
+  description: Mint tokens that initialize the Truv Bridge widget and connect flows.
+  humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
-  properties:
-  - url: https://docs.truv.com/reference/users_tokens_create
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Mint short-lived bridge tokens that initialize the Truv Bridge
-    front-end widget, plus link-access tokens for embedding connect flows.
-- aid: truv:links
-  name: Truv Links API
   tags:
-  - Links
-  - Connections
-  - Refresh
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_list
-  baseURL: https://prod.truv.com/v1
+  - Bridge Tokens
   properties:
-  - url: https://docs.truv.com/reference/links_list
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: List, retrieve, and delete links that represent a consumer's
-    connection to a payroll or financial data source, and trigger refresh tasks
-    to pull fresh data.
-- aid: truv:employment-verification
-  name: Truv Employment Verification API
+  - type: OpenAPI
+    url: openapi/truv-bridge-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-companies-providers-api
+  name: Truv Companies & Providers API
+  description: Employer companies, mappings, and data providers.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
   tags:
-  - Employment Verification
-  - VOE
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_employment_retrieve
-  baseURL: https://prod.truv.com/v1
+  - Companies & Providers
   properties:
-  - url: https://docs.truv.com/reference/links_employment_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve verification-of-employment data and reports for a
-    connected link, including employer, job title, status, and tenure.
-- aid: truv:income-verification
-  name: Truv Income Verification API
-  tags:
-  - Income Verification
-  - VOI
-  - Income Insights
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: OpenAPI
+    url: openapi/truv-companies-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-direct-deposit-api
+  name: Truv Direct Deposit API
+  description: Direct deposit and deposit switch reports.
+  humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
-  properties:
-  - url: https://docs.truv.com/reference/links_income_report_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve income reports, income transaction reports, and income
-    insights derived from a consumer's connected payroll and financial accounts.
-- aid: truv:pay-statements
-  name: Truv Pay Statements API
-  tags:
-  - Pay Statements
-  - Paystubs
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_statements_retrieve
-  baseURL: https://prod.truv.com/v1
-  properties:
-  - url: https://docs.truv.com/reference/links_statements_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve individual pay statements (paystub documents) associated
-    with a connected payroll link.
-- aid: truv:direct-deposit-switch
-  name: Truv Direct Deposit Switch API
   tags:
   - Direct Deposit
-  - Deposit Switch
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
-  baseURL: https://prod.truv.com/v1
   properties:
-  - url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve direct deposit and deposit switch reports that let
-    consumers move or update the account where their paycheck is deposited.
-- aid: truv:payroll-shifts
-  name: Truv Payroll & Shifts API
+  - type: OpenAPI
+    url: openapi/truv-direct-deposit-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-employment-api
+  name: Truv Employment API
+  description: Verification of employment data and reports.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
   tags:
-  - Payroll
-  - Shifts
-  - Gig
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_shifts_retrieve
-  baseURL: https://prod.truv.com/v1
+  - Employment
   properties:
-  - url: https://docs.truv.com/reference/links_shifts_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve shift-level payroll data from connected platforms,
-    supporting gig and hourly worker income and employment use cases.
-- aid: truv:insurance
-  name: Truv Insurance API
-  tags:
-  - Insurance
-  - Auto Insurance
-  - Home Insurance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: OpenAPI
+    url: openapi/truv-employment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-identity-api
+  name: Truv Identity API
+  description: Consumer identity data for a connected link.
+  humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
-  properties:
-  - url: https://docs.truv.com/reference/links_insurance_report_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve insurance reports for a connected link, including auto and
-    home insurance policy data pulled with consumer permission.
-- aid: truv:orders
-  name: Truv Orders API
-  tags:
-  - Orders
-  - Verifications
-  - Certifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/orders_create
-  baseURL: https://prod.truv.com/v1
-  properties:
-  - url: https://docs.truv.com/reference/orders_create
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Create and manage verification orders end to end - lookup, update,
-    cancel, add employers, and retrieve order events and certifications for
-    fulfillment-style verification workflows.
-- aid: truv:identity-banking
-  name: Truv Identity & Banking API
   tags:
   - Identity
-  - Banking
-  - VOA
-  - Transactions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/links_identity_retrieve
-  baseURL: https://prod.truv.com/v1
   properties:
-  - url: https://docs.truv.com/reference/links_identity_retrieve
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Retrieve consumer identity plus verification-of-assets banking data
-    - auth, balances, bank accounts and statements, transactions, investments,
-    and liabilities - from connected accounts.
-- aid: truv:webhooks
+  - type: OpenAPI
+    url: openapi/truv-identity-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-income-api
+  name: Truv Income API
+  description: Income reports, transactions, and income insights.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Income
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-income-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-insurance-api
+  name: Truv Insurance API
+  description: Insurance reports including auto and home.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Insurance
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-insurance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-links-api
+  name: Truv Links API
+  description: Manage connections between a consumer and a payroll or financial data source.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Links
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-links-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-orders-api
+  name: Truv Orders API
+  description: Verification orders and their lifecycle.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-pay-statements-api
+  name: Truv Pay Statements API
+  description: Individual pay statement documents.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Pay Statements
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-pay-statements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-payroll-shifts-api
+  name: Truv Payroll & Shifts API
+  description: Shift-level payroll data.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Payroll & Shifts
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-payroll-shifts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-pll-api
+  name: Truv PLL API
+  description: Pre-qualification lending logic reports.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - PLL
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-pll-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-scoring-api
+  name: Truv Scoring API
+  description: Scoring attribute reports.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Scoring
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-scoring-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-tasks-api
+  name: Truv Tasks API
+  description: Asynchronous task tracking.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-tax-api
+  name: Truv Tax API
+  description: Tax document data for a connected link.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Tax
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-tax-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-templates-api
+  name: Truv Templates API
+  description: Reusable configuration templates.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-users-api
+  name: Truv Users API
+  description: Manage the end users (consumers) whose data is connected through Truv.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/truv-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
+- aid: truv:truv-webhooks-api
   name: Truv Webhooks API
+  description: Webhook endpoint registration and delivery history.
+  humanURL: https://docs.truv.com/reference/users_create
+  baseURL: https://prod.truv.com/v1
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.truv.com/reference/webhooks_list
-  baseURL: https://prod.truv.com/v1
   properties:
-  - url: https://docs.truv.com/reference/webhooks_list
-    type: Documentation
-  - url: openapi/truv-openapi.yml
-    type: OpenAPI
-  description: Register and manage webhook endpoints to receive HMAC-signed event
-    notifications as links, orders, and reports complete asynchronously.
+  - type: OpenAPI
+    url: openapi/truv-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/users_tokens_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_list
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_employment_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_income_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_statements_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_direct_deposit_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_shifts_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_insurance_report_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/orders_create
+  - type: Documentation
+    url: https://docs.truv.com/reference/links_identity_retrieve
+  - type: Documentation
+    url: https://docs.truv.com/reference/webhooks_list
 common:
 - type: AgenticAccess
   url: agentic-access/truv-agentic-access.yml
