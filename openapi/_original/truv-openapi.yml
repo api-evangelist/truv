@@ -1,0 +1,1344 @@
+openapi: 3.0.1
+info:
+  title: Truv API
+  description: >-
+    Truv provides consumer-permissioned access to payroll, income, and employment
+    data. This specification covers the Truv REST API for managing users, minting
+    bridge tokens, working with links, and retrieving employment, income, pay
+    statement, direct deposit, insurance, identity, and banking data, plus orders,
+    tasks, and webhooks.
+  termsOfService: https://truv.com/terms-of-service/
+  contact:
+    name: Truv Support
+    email: support@truv.com
+    url: https://docs.truv.com
+  version: '1.0'
+servers:
+  - url: https://prod.truv.com
+    description: Truv production API
+security:
+  - accessClientId: []
+    accessSecret: []
+tags:
+  - name: Users
+    description: Manage the end users (consumers) whose data is connected through Truv.
+  - name: Bridge Tokens
+    description: Mint tokens that initialize the Truv Bridge widget and connect flows.
+  - name: Links
+    description: Manage connections between a consumer and a payroll or financial data source.
+  - name: Employment
+    description: Verification of employment data and reports.
+  - name: Income
+    description: Income reports, transactions, and income insights.
+  - name: Pay Statements
+    description: Individual pay statement documents.
+  - name: Direct Deposit
+    description: Direct deposit and deposit switch reports.
+  - name: Payroll & Shifts
+    description: Shift-level payroll data.
+  - name: Insurance
+    description: Insurance reports including auto and home.
+  - name: Orders
+    description: Verification orders and their lifecycle.
+  - name: Tasks
+    description: Asynchronous task tracking.
+  - name: Identity
+    description: Consumer identity data for a connected link.
+  - name: Banking
+    description: Verification-of-assets banking data for a connected link.
+  - name: Tax
+    description: Tax document data for a connected link.
+  - name: Companies & Providers
+    description: Employer companies, mappings, and data providers.
+  - name: Templates
+    description: Reusable configuration templates.
+  - name: PLL
+    description: Pre-qualification lending logic reports.
+  - name: Scoring
+    description: Scoring attribute reports.
+  - name: Admin
+    description: Administrative access key management.
+  - name: Webhooks
+    description: Webhook endpoint registration and delivery history.
+paths:
+  /v1/users/:
+    post:
+      operationId: createUser
+      tags:
+        - Users
+      summary: Create a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '201':
+          description: User created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      operationId: listUsers
+      tags:
+        - Users
+      summary: List users.
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /v1/users/{user_id}/:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getUser
+      tags:
+        - Users
+      summary: Retrieve a user.
+      responses:
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    patch:
+      operationId: updateUser
+      tags:
+        - Users
+      summary: Update a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '200':
+          description: Updated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      operationId: deleteUser
+      tags:
+        - Users
+      summary: Delete a user.
+      responses:
+        '204':
+          description: User deleted.
+  /v1/users/{user_id}/tokens/:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    post:
+      operationId: createBridgeToken
+      tags:
+        - Bridge Tokens
+      summary: Create a bridge token for a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BridgeTokenRequest'
+      responses:
+        '200':
+          description: A bridge token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeToken'
+  /v1/link-access-tokens/:
+    post:
+      operationId: createLinkAccessToken
+      tags:
+        - Bridge Tokens
+      summary: Create a link-access token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link_id:
+                  type: string
+      responses:
+        '200':
+          description: A link-access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeToken'
+  /v1/links/:
+    get:
+      operationId: listLinks
+      tags:
+        - Links
+      summary: List links.
+      responses:
+        '200':
+          description: A list of links.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+  /v1/links/{link_id}/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getLink
+      tags:
+        - Links
+      summary: Retrieve a link.
+      responses:
+        '200':
+          description: A link object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Link'
+    delete:
+      operationId: deleteLink
+      tags:
+        - Links
+      summary: Delete a link.
+      responses:
+        '204':
+          description: Link deleted.
+  /v1/refresh/tasks/:
+    post:
+      operationId: createRefreshTask
+      tags:
+        - Links
+      summary: Trigger a refresh task for a link.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+      responses:
+        '200':
+          description: A refresh task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /v1/refresh/tasks/{task_id}/:
+    parameters:
+      - $ref: '#/components/parameters/TaskId'
+    get:
+      operationId: getRefreshTask
+      tags:
+        - Links
+      summary: Retrieve a refresh task.
+      responses:
+        '200':
+          description: A refresh task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /v1/links/{link_id}/employment/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getEmployment
+      tags:
+        - Employment
+      summary: Retrieve employment data for a link.
+      responses:
+        '200':
+          description: Employment data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/employments/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: listEmployments
+      tags:
+        - Employment
+      summary: List all employments for a link.
+      responses:
+        '200':
+          description: A list of employments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /v1/links/{link_id}/employment/report/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getEmploymentReport
+      tags:
+        - Employment
+      summary: Retrieve the employment verification report for a link.
+      responses:
+        '200':
+          description: An employment report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/income/report/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getIncomeReport
+      tags:
+        - Income
+      summary: Retrieve the income report for a link.
+      responses:
+        '200':
+          description: An income report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/income/transactions/reports/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getIncomeTransactionsReport
+      tags:
+        - Income
+      summary: Retrieve the income transactions report for a link.
+      responses:
+        '200':
+          description: An income transactions report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/users/{user_id}/reports/{report_id}/:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/ReportId'
+    post:
+      operationId: createUserReport
+      tags:
+        - Income
+      summary: Create a report for a user.
+      responses:
+        '200':
+          description: A report.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: getUserReport
+      tags:
+        - Income
+      summary: Retrieve a report for a user.
+      responses:
+        '200':
+          description: A report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/users/{user_id}/income_insights/reports/{report_id}/:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/ReportId'
+    post:
+      operationId: createIncomeInsightsReport
+      tags:
+        - Income
+      summary: Create an income insights report for a user.
+      responses:
+        '200':
+          description: An income insights report.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: getIncomeInsightsReport
+      tags:
+        - Income
+      summary: Retrieve an income insights report for a user.
+      responses:
+        '200':
+          description: An income insights report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/statements/{statement_id}/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+      - name: statement_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the pay statement to retrieve.
+    get:
+      operationId: getPayStatement
+      tags:
+        - Pay Statements
+      summary: Retrieve a pay statement for a link.
+      responses:
+        '200':
+          description: A pay statement.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keys/:
+    post:
+      operationId: createKey
+      tags:
+        - Admin
+      summary: Create an access key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: An access key.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keys/deactivate/:
+    post:
+      operationId: deactivateKey
+      tags:
+        - Admin
+      summary: Deactivate an access key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Key deactivated.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/direct_deposit/report/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getDirectDepositReport
+      tags:
+        - Direct Deposit
+      summary: Retrieve the direct deposit report for a link.
+      responses:
+        '200':
+          description: A direct deposit report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/users/{user_id}/deposit_switch/report/:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      operationId: getDepositSwitchReport
+      tags:
+        - Direct Deposit
+      summary: Retrieve the deposit switch report for a user.
+      responses:
+        '200':
+          description: A deposit switch report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/shifts/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getShifts
+      tags:
+        - Payroll & Shifts
+      summary: Retrieve shift data for a link.
+      responses:
+        '200':
+          description: Shift data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/insurance/report/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getInsuranceReport
+      tags:
+        - Insurance
+      summary: Retrieve the insurance report for a link.
+      responses:
+        '200':
+          description: An insurance report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/insurance/auto/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getAutoInsuranceReport
+      tags:
+        - Insurance
+      summary: Retrieve the auto insurance report for a link.
+      responses:
+        '200':
+          description: An auto insurance report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/insurance/home/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getHomeInsuranceReport
+      tags:
+        - Insurance
+      summary: Retrieve the home insurance report for a link.
+      responses:
+        '200':
+          description: A home insurance report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/orders/:
+    post:
+      operationId: createOrder
+      tags:
+        - Orders
+      summary: Create an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/lookup/:
+    post:
+      operationId: lookupOrder
+      tags:
+        - Orders
+      summary: Look up an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrder
+      tags:
+        - Orders
+      summary: Retrieve an order.
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    post:
+      operationId: updateOrderPost
+      tags:
+        - Orders
+      summary: Update an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    patch:
+      operationId: patchOrder
+      tags:
+        - Orders
+      summary: Partially update an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/cancel/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    post:
+      operationId: cancelOrder
+      tags:
+        - Orders
+      summary: Cancel an order.
+      responses:
+        '200':
+          description: An order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/employers/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    post:
+      operationId: addOrderEmployers
+      tags:
+        - Orders
+      summary: Add employers to an order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /v1/orders/{id}/events/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrderEvents
+      tags:
+        - Orders
+      summary: Retrieve events for an order.
+      responses:
+        '200':
+          description: A list of order events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /v1/orders/{id}/certifications/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getOrderCertifications
+      tags:
+        - Orders
+      summary: Retrieve certifications for an order.
+      responses:
+        '200':
+          description: A list of certifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /v1/tasks/:
+    get:
+      operationId: listTasks
+      tags:
+        - Tasks
+      summary: List tasks.
+      responses:
+        '200':
+          description: A list of tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /v1/tasks/{id}/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getTask
+      tags:
+        - Tasks
+      summary: Retrieve a task.
+      responses:
+        '200':
+          description: A task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /v1/links/{link_id}/identity/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getIdentity
+      tags:
+        - Identity
+      summary: Retrieve identity data for a link.
+      responses:
+        '200':
+          description: Identity data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/auth/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankingAuth
+      tags:
+        - Banking
+      summary: Retrieve banking auth data for a link.
+      responses:
+        '200':
+          description: Banking auth data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/balances/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankingBalances
+      tags:
+        - Banking
+      summary: Retrieve account balances for a link.
+      responses:
+        '200':
+          description: Account balances.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/bank_accounts/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankAccounts
+      tags:
+        - Banking
+      summary: Retrieve bank accounts for a link.
+      responses:
+        '200':
+          description: Bank accounts.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/bank_statements/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getBankStatements
+      tags:
+        - Banking
+      summary: Retrieve bank statements for a link.
+      responses:
+        '200':
+          description: Bank statements.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/transactions/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getTransactions
+      tags:
+        - Banking
+      summary: Retrieve transactions for a link.
+      responses:
+        '200':
+          description: Transactions.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/investments/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getInvestments
+      tags:
+        - Banking
+      summary: Retrieve investments for a link.
+      responses:
+        '200':
+          description: Investments.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/liabilities/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getLiabilities
+      tags:
+        - Banking
+      summary: Retrieve liabilities for a link.
+      responses:
+        '200':
+          description: Liabilities.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/links/{link_id}/tax/{tax_id}/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+      - name: tax_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the tax document to retrieve.
+    get:
+      operationId: getTaxDocument
+      tags:
+        - Tax
+      summary: Retrieve a tax document for a link.
+      responses:
+        '200':
+          description: A tax document.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/companies/:
+    post:
+      operationId: createCompany
+      tags:
+        - Companies & Providers
+      summary: Create a company.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: A company.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/companies/{id}/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getCompany
+      tags:
+        - Companies & Providers
+      summary: Retrieve a company.
+      responses:
+        '200':
+          description: A company.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/company-mappings-search/:
+    get:
+      operationId: searchCompanyMappings
+      tags:
+        - Companies & Providers
+      summary: Search company mappings.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Search query.
+      responses:
+        '200':
+          description: Company mapping search results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /v1/providers/{id}/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getProvider
+      tags:
+        - Companies & Providers
+      summary: Retrieve a provider.
+      responses:
+        '200':
+          description: A provider.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/templates/:
+    get:
+      operationId: listTemplates
+      tags:
+        - Templates
+      summary: List templates.
+      responses:
+        '200':
+          description: A list of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+    post:
+      operationId: createTemplate
+      tags:
+        - Templates
+      summary: Create a template.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: A template.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/templates/{id}/:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      operationId: getTemplate
+      tags:
+        - Templates
+      summary: Retrieve a template.
+      responses:
+        '200':
+          description: A template.
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      operationId: updateTemplate
+      tags:
+        - Templates
+      summary: Update a template.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: A template.
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      operationId: deleteTemplate
+      tags:
+        - Templates
+      summary: Delete a template.
+      responses:
+        '204':
+          description: Template deleted.
+  /v1/links/{link_id}/pll/report/:
+    parameters:
+      - $ref: '#/components/parameters/LinkId'
+    get:
+      operationId: getPllReport
+      tags:
+        - PLL
+      summary: Retrieve the PLL report for a link.
+      responses:
+        '200':
+          description: A PLL report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/scoring_attributes/reports:
+    post:
+      operationId: createScoringAttributesReport
+      tags:
+        - Scoring
+      summary: Create a scoring attributes report.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: A scoring attributes report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/scoring_attributes/reports/{report_id}:
+    parameters:
+      - $ref: '#/components/parameters/ReportId'
+    get:
+      operationId: getScoringAttributesReport
+      tags:
+        - Scoring
+      summary: Retrieve a scoring attributes report.
+      responses:
+        '200':
+          description: A scoring attributes report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/webhooks/:
+    get:
+      operationId: listWebhooks
+      tags:
+        - Webhooks
+      summary: List webhooks.
+      responses:
+        '200':
+          description: A list of webhooks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      tags:
+        - Webhooks
+      summary: Create a webhook.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '201':
+          description: A webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /v1/webhooks/{webhook_id}/:
+    parameters:
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the webhook.
+    get:
+      operationId: getWebhook
+      tags:
+        - Webhooks
+      summary: Retrieve a webhook.
+      responses:
+        '200':
+          description: A webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    patch:
+      operationId: updateWebhook
+      tags:
+        - Webhooks
+      summary: Update a webhook.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: A webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    delete:
+      operationId: deleteWebhook
+      tags:
+        - Webhooks
+      summary: Delete a webhook.
+      responses:
+        '204':
+          description: Webhook deleted.
+  /v1/webhook-requests/:
+    get:
+      operationId: listWebhookRequests
+      tags:
+        - Webhooks
+      summary: List webhook delivery requests.
+      responses:
+        '200':
+          description: A list of webhook requests.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  securitySchemes:
+    accessClientId:
+      type: apiKey
+      in: header
+      name: X-Access-Client-Id
+      description: Your Truv access client ID.
+    accessSecret:
+      type: apiKey
+      in: header
+      name: X-Access-Secret
+      description: Your Truv access secret.
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the task.
+    OrderId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the resource.
+    ReportId:
+      name: report_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the report.
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the user.
+        external_user_id:
+          type: string
+          description: Your own identifier for the user.
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    UserRequest:
+      type: object
+      properties:
+        external_user_id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+    BridgeTokenRequest:
+      type: object
+      properties:
+        product_type:
+          type: string
+          description: The Truv product to initialize, for example employment or income.
+        tracking_info:
+          type: string
+    BridgeToken:
+      type: object
+      properties:
+        bridge_token:
+          type: string
+        user_id:
+          type: string
+        expiration:
+          type: string
+          format: date-time
+    Link:
+      type: object
+      properties:
+        link_id:
+          type: string
+        user_id:
+          type: string
+        status:
+          type: string
+        provider_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Task:
+      type: object
+      properties:
+        task_id:
+          type: string
+        status:
+          type: string
+        product_type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+    OrderRequest:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        employers:
+          type: array
+          items:
+            type: object
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+    WebhookRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The endpoint that will receive event notifications.
+        auth_token:
+          type: string
+        status:
+          type: string
+    Webhook:
+      type: object
+      properties:
+        webhook_id:
+          type: string
+        url:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error_code:
+          type: string
+        error_message:
+          type: string
+      required:
+        - error_message
