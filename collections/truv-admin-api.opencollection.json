@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/keys/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an access key."
+        },
+        {
+          "info": {
+            "name": "Deactivate an access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/keys/deactivate/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivate an access key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

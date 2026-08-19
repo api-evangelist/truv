@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Income API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Income",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the income report for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/income/report/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve the income report for a link."
+        },
+        {
+          "info": {
+            "name": "Retrieve the income transactions report for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/income/transactions/reports/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve the income transactions report for a link."
+        },
+        {
+          "info": {
+            "name": "Retrieve a report for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/users/:user_id/reports/:report_id/",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report."
+              }
+            ]
+          },
+          "docs": "Retrieve a report for a user."
+        },
+        {
+          "info": {
+            "name": "Create a report for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/users/:user_id/reports/:report_id/",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report."
+              }
+            ]
+          },
+          "docs": "Create a report for a user."
+        },
+        {
+          "info": {
+            "name": "Retrieve an income insights report for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/users/:user_id/income_insights/reports/:report_id/",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report."
+              }
+            ]
+          },
+          "docs": "Retrieve an income insights report for a user."
+        },
+        {
+          "info": {
+            "name": "Create an income insights report for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/users/:user_id/income_insights/reports/:report_id/",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report."
+              }
+            ]
+          },
+          "docs": "Create an income insights report for a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

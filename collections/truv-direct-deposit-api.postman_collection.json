@@ -1,0 +1,251 @@
+{
+  "item": [
+    {
+      "id": "7c8f90da-6593-4571-9478-9f8127894f8b",
+      "name": "Direct Deposit",
+      "description": {
+        "content": "Direct deposit and deposit switch reports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d22ec08a-536b-4435-bebd-d15298ccd13f",
+          "name": "Retrieve the direct deposit report for a link.",
+          "request": {
+            "name": "Retrieve the direct deposit report for a link.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "links",
+                ":link_id",
+                "direct_deposit",
+                "report",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "link_id",
+                  "description": "(Required) The ID of the link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "392652f5-615c-4915-a788-70d0cf8a61f9",
+              "name": "A direct deposit report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "links",
+                    ":link_id",
+                    "direct_deposit",
+                    "report",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "link_id",
+                      "description": "(Required) The ID of the link."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bab1702a-7d24-40b5-9260-bbe7d3a201ff",
+          "name": "Retrieve the deposit switch report for a user.",
+          "request": {
+            "name": "Retrieve the deposit switch report for a user.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":user_id",
+                "deposit_switch",
+                "report",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) The ID of the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91f2b000-c07a-4a57-8436-099a3c71f101",
+              "name": "A deposit switch report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_id",
+                    "deposit_switch",
+                    "report",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) The ID of the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://prod.truv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Access-Client-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aefc4ba6-f6e8-4f5f-933d-68182bc57f07",
+    "name": "Truv Admin Direct Deposit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.\n\nContact Support:\n Name: Truv Support\n Email: support@truv.com",
+      "type": "text/plain"
+    }
+  }
+}

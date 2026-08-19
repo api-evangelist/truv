@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Companies & Providers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies & Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/companies/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a company."
+        },
+        {
+          "info": {
+            "name": "Retrieve a company.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/companies/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a company."
+        },
+        {
+          "info": {
+            "name": "Search company mappings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/company-mappings-search/",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query."
+              }
+            ]
+          },
+          "docs": "Search company mappings."
+        },
+        {
+          "info": {
+            "name": "Retrieve a provider.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/providers/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

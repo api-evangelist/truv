@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Employment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve employment data for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/employment/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve employment data for a link."
+        },
+        {
+          "info": {
+            "name": "List all employments for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/employments/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "List all employments for a link."
+        },
+        {
+          "info": {
+            "name": "Retrieve the employment verification report for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/employment/report/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve the employment verification report for a link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

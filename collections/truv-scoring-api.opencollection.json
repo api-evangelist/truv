@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Scoring API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a scoring attributes report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/scoring_attributes/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a scoring attributes report."
+        },
+        {
+          "info": {
+            "name": "Retrieve a scoring attributes report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/scoring_attributes/reports/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report."
+              }
+            ]
+          },
+          "docs": "Retrieve a scoring attributes report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

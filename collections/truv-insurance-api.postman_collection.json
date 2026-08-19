@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "9bcdd4cc-7135-4e4f-ae08-9027da2783cc",
+      "name": "Insurance",
+      "description": {
+        "content": "Insurance reports including auto and home.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "20228be6-85f0-44d8-8fd9-c7961ac4a12f",
+          "name": "Retrieve the insurance report for a link.",
+          "request": {
+            "name": "Retrieve the insurance report for a link.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "links",
+                ":link_id",
+                "insurance",
+                "report",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "link_id",
+                  "description": "(Required) The ID of the link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df230fa3-20c8-4590-9a67-b79e34509adc",
+              "name": "An insurance report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "links",
+                    ":link_id",
+                    "insurance",
+                    "report",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "link_id",
+                      "description": "(Required) The ID of the link."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "303ce83a-347d-4821-8a74-919f4c88b70d",
+          "name": "Retrieve the auto insurance report for a link.",
+          "request": {
+            "name": "Retrieve the auto insurance report for a link.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "links",
+                ":link_id",
+                "insurance",
+                "auto",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "link_id",
+                  "description": "(Required) The ID of the link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a679120d-2403-4cc3-9996-194b03a0b05b",
+              "name": "An auto insurance report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "links",
+                    ":link_id",
+                    "insurance",
+                    "auto",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "link_id",
+                      "description": "(Required) The ID of the link."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51d773a0-2728-464c-9222-61f82fddb20d",
+          "name": "Retrieve the home insurance report for a link.",
+          "request": {
+            "name": "Retrieve the home insurance report for a link.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "links",
+                ":link_id",
+                "insurance",
+                "home",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "link_id",
+                  "description": "(Required) The ID of the link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e56334d7-8cff-4bcf-9a51-cfd5921dea05",
+              "name": "A home insurance report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "links",
+                    ":link_id",
+                    "insurance",
+                    "home",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "link_id",
+                      "description": "(Required) The ID of the link."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://prod.truv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Access-Client-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "20567bac-5e8f-4b1b-8b86-0ee6c327a4ba",
+    "name": "Truv Admin Insurance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.\n\nContact Support:\n Name: Truv Support\n Email: support@truv.com",
+      "type": "text/plain"
+    }
+  }
+}

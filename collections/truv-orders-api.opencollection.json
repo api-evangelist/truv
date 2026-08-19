@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Orders API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/orders/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an order."
+        },
+        {
+          "info": {
+            "name": "Look up an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/orders/lookup/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Look up an order."
+        },
+        {
+          "info": {
+            "name": "Retrieve an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/orders/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve an order."
+        },
+        {
+          "info": {
+            "name": "Update an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/orders/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an order."
+        },
+        {
+          "info": {
+            "name": "Partially update an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://prod.truv.com/v1/orders/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update an order."
+        },
+        {
+          "info": {
+            "name": "Cancel an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/orders/:id/cancel/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ]
+          },
+          "docs": "Cancel an order."
+        },
+        {
+          "info": {
+            "name": "Add employers to an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/orders/:id/employers/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add employers to an order."
+        },
+        {
+          "info": {
+            "name": "Retrieve events for an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/orders/:id/events/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve events for an order."
+        },
+        {
+          "info": {
+            "name": "Retrieve certifications for an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/orders/:id/certifications/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve certifications for an order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

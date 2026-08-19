@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Identity API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve identity data for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/identity/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve identity data for a link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

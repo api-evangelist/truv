@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Links API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List links.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/"
+          },
+          "docs": "List links."
+        },
+        {
+          "info": {
+            "name": "Retrieve a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve a link."
+        },
+        {
+          "info": {
+            "name": "Delete a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://prod.truv.com/v1/links/:link_id/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Delete a link."
+        },
+        {
+          "info": {
+            "name": "Trigger a refresh task for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.truv.com/v1/refresh/tasks/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a refresh task for a link."
+        },
+        {
+          "info": {
+            "name": "Retrieve a refresh task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/refresh/tasks/:task_id/",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the task."
+              }
+            ]
+          },
+          "docs": "Retrieve a refresh task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

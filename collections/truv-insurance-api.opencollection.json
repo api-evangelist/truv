@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truv Admin Insurance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Access-Client-Id",
+      "value": "{{X-Access-Client-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insurance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the insurance report for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/insurance/report/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve the insurance report for a link."
+        },
+        {
+          "info": {
+            "name": "Retrieve the auto insurance report for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/insurance/auto/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve the auto insurance report for a link."
+        },
+        {
+          "info": {
+            "name": "Retrieve the home insurance report for a link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.truv.com/v1/links/:link_id/insurance/home/",
+            "params": [
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the link."
+              }
+            ]
+          },
+          "docs": "Retrieve the home insurance report for a link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,225 @@
+{
+  "item": [
+    {
+      "id": "487ec0aa-3401-43c0-9cd8-b665a93f31c2",
+      "name": "Tasks",
+      "description": {
+        "content": "Asynchronous task tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "720845f6-b9c3-47ba-bb52-d1f367445bcc",
+          "name": "List tasks.",
+          "request": {
+            "name": "List tasks.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tasks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "747b78d7-35cc-4aee-bfd1-29fd619f7430",
+              "name": "A list of tasks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tasks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"task_id\": \"string\",\n    \"status\": \"string\",\n    \"product_type\": \"string\",\n    \"created_at\": \"2024-06-28T00:53:53.060Z\",\n    \"finished_at\": \"1948-12-28T21:32:58.973Z\"\n  },\n  {\n    \"task_id\": \"string\",\n    \"status\": \"string\",\n    \"product_type\": \"string\",\n    \"created_at\": \"1974-01-15T12:50:49.319Z\",\n    \"finished_at\": \"1988-01-29T18:49:19.441Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c39e8bf9-9400-4c5f-9b26-3f0334a45fef",
+          "name": "Retrieve a task.",
+          "request": {
+            "name": "Retrieve a task.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "tasks",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a670ccae-6e20-461c-bf55-0bc4f07d3bfa",
+              "name": "A task.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tasks",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Access-Client-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"task_id\": \"string\",\n  \"status\": \"string\",\n  \"product_type\": \"string\",\n  \"created_at\": \"1992-09-08T20:12:59.939Z\",\n  \"finished_at\": \"1971-06-03T16:54:07.433Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://prod.truv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Access-Client-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bd5204b1-f6e9-4654-9833-d563b7327bda",
+    "name": "Truv Admin Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.\n\nContact Support:\n Name: Truv Support\n Email: support@truv.com",
+      "type": "text/plain"
+    }
+  }
+}
