@@ -30,7 +30,7 @@ tags:
 - Fintech
 created: '2026-07-01'
 modified: '2026-07-01'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: truv:truv-admin-api
   name: Truv Admin API
