@@ -26,6 +26,13 @@ tags:
 - Employment Verification
 - Payroll
 - Direct Deposit
+- Consumer-Permissioned Data
+- Fintech
+tags_raw:
+- Income Verification
+- Employment Verification
+- Payroll
+- Direct Deposit
 - Consumer Permissioned Data
 - Fintech
 created: '2026-07-01'
@@ -378,6 +385,8 @@ apis:
   humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -548,6 +557,8 @@ apis:
   humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -650,6 +661,8 @@ apis:
   humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -684,6 +697,8 @@ apis:
   humanURL: https://docs.truv.com/reference/users_create
   baseURL: https://prod.truv.com/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
