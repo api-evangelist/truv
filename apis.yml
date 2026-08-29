@@ -7,6 +7,18 @@ description: Truv provides consumer-permissioned access to payroll, income, and
   instantly verify income and employment, retrieve pay statements, and switch
   direct deposit, replacing manual document collection and legacy verification
   services across lending, background screening, and fintech workflows.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
