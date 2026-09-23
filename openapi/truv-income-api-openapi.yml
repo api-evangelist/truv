@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Income API
+  title: Truv Income API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -25,7 +25,7 @@ paths:
       operationId: getIncomeReport
       tags:
       - Income
-      summary: Retrieve the income report for a link.
+      summary: Retrieve the income report for a link
       responses:
         '200':
           description: An income report.
@@ -40,7 +40,7 @@ paths:
       operationId: getIncomeTransactionsReport
       tags:
       - Income
-      summary: Retrieve the income transactions report for a link.
+      summary: Retrieve the income transactions report for a link
       responses:
         '200':
           description: An income transactions report.
@@ -56,7 +56,7 @@ paths:
       operationId: createUserReport
       tags:
       - Income
-      summary: Create a report for a user.
+      summary: Create a report for a user
       responses:
         '200':
           description: A report.
@@ -68,7 +68,7 @@ paths:
       operationId: getUserReport
       tags:
       - Income
-      summary: Retrieve a report for a user.
+      summary: Retrieve a report for a user
       responses:
         '200':
           description: A report.
@@ -84,7 +84,7 @@ paths:
       operationId: createIncomeInsightsReport
       tags:
       - Income
-      summary: Create an income insights report for a user.
+      summary: Create an income insights report for a user
       responses:
         '200':
           description: An income insights report.
@@ -96,7 +96,7 @@ paths:
       operationId: getIncomeInsightsReport
       tags:
       - Income
-      summary: Retrieve an income insights report for a user.
+      summary: Retrieve an income insights report for a user
       responses:
         '200':
           description: An income insights report.
@@ -106,13 +106,6 @@ paths:
                 type: object
 components:
   parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
     LinkId:
       name: link_id
       in: path
@@ -120,6 +113,13 @@ components:
       schema:
         type: string
       description: The ID of the link.
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
     ReportId:
       name: report_id
       in: path

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Scoring API
+  title: Truv Scoring API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: createScoringAttributesReport
       tags:
       - Scoring
-      summary: Create a scoring attributes report.
+      summary: Create a scoring attributes report
       requestBody:
         required: true
         content:
@@ -44,7 +44,7 @@ paths:
       operationId: getScoringAttributesReport
       tags:
       - Scoring
-      summary: Retrieve a scoring attributes report.
+      summary: Retrieve a scoring attributes report
       responses:
         '200':
           description: A scoring attributes report.

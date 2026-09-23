@@ -1,26 +1,7 @@
 {
   "provider": "truv",
   "sources": [
-    "truv-admin-api-openapi.yml",
-    "truv-banking-api-openapi.yml",
-    "truv-bridge-tokens-api-openapi.yml",
-    "truv-companies-providers-api-openapi.yml",
-    "truv-direct-deposit-api-openapi.yml",
-    "truv-employment-api-openapi.yml",
-    "truv-identity-api-openapi.yml",
-    "truv-income-api-openapi.yml",
-    "truv-insurance-api-openapi.yml",
-    "truv-links-api-openapi.yml",
-    "truv-orders-api-openapi.yml",
-    "truv-pay-statements-api-openapi.yml",
-    "truv-payroll-shifts-api-openapi.yml",
-    "truv-pll-api-openapi.yml",
-    "truv-scoring-api-openapi.yml",
-    "truv-tasks-api-openapi.yml",
-    "truv-tax-api-openapi.yml",
-    "truv-templates-api-openapi.yml",
-    "truv-users-api-openapi.yml",
-    "truv-webhooks-api-openapi.yml"
+    "_original/truv-openapi.yml"
   ],
   "outputs": [
     "truv-admin-api-openapi.yml",
@@ -34,9 +15,9 @@
     "truv-insurance-api-openapi.yml",
     "truv-links-api-openapi.yml",
     "truv-orders-api-openapi.yml",
+    "truv-pll-api-openapi.yml",
     "truv-pay-statements-api-openapi.yml",
     "truv-payroll-shifts-api-openapi.yml",
-    "truv-pll-api-openapi.yml",
     "truv-scoring-api-openapi.yml",
     "truv-tasks-api-openapi.yml",
     "truv-tax-api-openapi.yml",
@@ -47,6 +28,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "truv-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "truv-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-banking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-bridge-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-companies-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-direct-deposit-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-employment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-identity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-income-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-insurance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-pay-statements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-payroll-shifts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-pll-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-scoring-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-tax-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truv-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Webhooks API
+  title: Truv Webhooks API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: listWebhooks
       tags:
       - Webhooks
-      summary: List webhooks.
+      summary: List webhooks
       responses:
         '200':
           description: A list of webhooks.
@@ -37,7 +37,7 @@ paths:
       operationId: createWebhook
       tags:
       - Webhooks
-      summary: Create a webhook.
+      summary: Create a webhook
       requestBody:
         required: true
         content:
@@ -63,7 +63,7 @@ paths:
       operationId: getWebhook
       tags:
       - Webhooks
-      summary: Retrieve a webhook.
+      summary: Retrieve a webhook
       responses:
         '200':
           description: A webhook.
@@ -75,7 +75,7 @@ paths:
       operationId: updateWebhook
       tags:
       - Webhooks
-      summary: Update a webhook.
+      summary: Update a webhook
       requestBody:
         required: true
         content:
@@ -93,7 +93,7 @@ paths:
       operationId: deleteWebhook
       tags:
       - Webhooks
-      summary: Delete a webhook.
+      summary: Delete a webhook
       responses:
         '204':
           description: Webhook deleted.
@@ -102,7 +102,7 @@ paths:
       operationId: listWebhookRequests
       tags:
       - Webhooks
-      summary: List webhook delivery requests.
+      summary: List webhook delivery requests
       responses:
         '200':
           description: A list of webhook requests.

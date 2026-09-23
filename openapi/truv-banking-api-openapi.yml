@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Banking API
+  title: Truv Banking API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -25,7 +25,7 @@ paths:
       operationId: getBankingAuth
       tags:
       - Banking
-      summary: Retrieve banking auth data for a link.
+      summary: Retrieve banking auth data for a link
       responses:
         '200':
           description: Banking auth data.
@@ -40,7 +40,7 @@ paths:
       operationId: getBankingBalances
       tags:
       - Banking
-      summary: Retrieve account balances for a link.
+      summary: Retrieve account balances for a link
       responses:
         '200':
           description: Account balances.
@@ -55,7 +55,7 @@ paths:
       operationId: getBankAccounts
       tags:
       - Banking
-      summary: Retrieve bank accounts for a link.
+      summary: Retrieve bank accounts for a link
       responses:
         '200':
           description: Bank accounts.
@@ -70,7 +70,7 @@ paths:
       operationId: getBankStatements
       tags:
       - Banking
-      summary: Retrieve bank statements for a link.
+      summary: Retrieve bank statements for a link
       responses:
         '200':
           description: Bank statements.
@@ -85,7 +85,7 @@ paths:
       operationId: getTransactions
       tags:
       - Banking
-      summary: Retrieve transactions for a link.
+      summary: Retrieve transactions for a link
       responses:
         '200':
           description: Transactions.
@@ -100,7 +100,7 @@ paths:
       operationId: getInvestments
       tags:
       - Banking
-      summary: Retrieve investments for a link.
+      summary: Retrieve investments for a link
       responses:
         '200':
           description: Investments.
@@ -115,7 +115,7 @@ paths:
       operationId: getLiabilities
       tags:
       - Banking
-      summary: Retrieve liabilities for a link.
+      summary: Retrieve liabilities for a link
       responses:
         '200':
           description: Liabilities.

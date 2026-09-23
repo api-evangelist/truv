@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Orders API
+  title: Truv Orders API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: createOrder
       tags:
       - Orders
-      summary: Create an order.
+      summary: Create an order
       requestBody:
         required: true
         content:
@@ -42,7 +42,7 @@ paths:
       operationId: lookupOrder
       tags:
       - Orders
-      summary: Look up an order.
+      summary: Look up an order
       requestBody:
         required: true
         content:
@@ -63,7 +63,7 @@ paths:
       operationId: getOrder
       tags:
       - Orders
-      summary: Retrieve an order.
+      summary: Retrieve an order
       responses:
         '200':
           description: An order.
@@ -75,7 +75,7 @@ paths:
       operationId: updateOrderPost
       tags:
       - Orders
-      summary: Update an order.
+      summary: Update an order
       requestBody:
         required: true
         content:
@@ -93,7 +93,7 @@ paths:
       operationId: patchOrder
       tags:
       - Orders
-      summary: Partially update an order.
+      summary: Partially update an order
       requestBody:
         required: true
         content:
@@ -114,7 +114,7 @@ paths:
       operationId: cancelOrder
       tags:
       - Orders
-      summary: Cancel an order.
+      summary: Cancel an order
       responses:
         '200':
           description: An order.
@@ -129,7 +129,7 @@ paths:
       operationId: addOrderEmployers
       tags:
       - Orders
-      summary: Add employers to an order.
+      summary: Add employers to an order
       requestBody:
         required: true
         content:
@@ -150,7 +150,7 @@ paths:
       operationId: getOrderEvents
       tags:
       - Orders
-      summary: Retrieve events for an order.
+      summary: Retrieve events for an order
       responses:
         '200':
           description: A list of order events.
@@ -167,7 +167,7 @@ paths:
       operationId: getOrderCertifications
       tags:
       - Orders
-      summary: Retrieve certifications for an order.
+      summary: Retrieve certifications for an order
       responses:
         '200':
           description: A list of certifications.
@@ -179,6 +179,20 @@ paths:
                   type: object
 components:
   schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
     OrderRequest:
       type: object
       properties:
@@ -194,20 +208,6 @@ components:
           type: array
           items:
             type: object
-    Order:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        products:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
   parameters:
     OrderId:
       name: id

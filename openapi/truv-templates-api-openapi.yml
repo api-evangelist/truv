@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Templates API
+  title: Truv Templates API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: listTemplates
       tags:
       - Templates
-      summary: List templates.
+      summary: List templates
       responses:
         '200':
           description: A list of templates.
@@ -37,7 +37,7 @@ paths:
       operationId: createTemplate
       tags:
       - Templates
-      summary: Create a template.
+      summary: Create a template
       requestBody:
         required: true
         content:
@@ -58,7 +58,7 @@ paths:
       operationId: getTemplate
       tags:
       - Templates
-      summary: Retrieve a template.
+      summary: Retrieve a template
       responses:
         '200':
           description: A template.
@@ -70,7 +70,7 @@ paths:
       operationId: updateTemplate
       tags:
       - Templates
-      summary: Update a template.
+      summary: Update a template
       requestBody:
         required: true
         content:
@@ -88,7 +88,7 @@ paths:
       operationId: deleteTemplate
       tags:
       - Templates
-      summary: Delete a template.
+      summary: Delete a template
       responses:
         '204':
           description: Template deleted.

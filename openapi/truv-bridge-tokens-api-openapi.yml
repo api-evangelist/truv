@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Bridge Tokens API
+  title: Truv Bridge Tokens API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -25,7 +25,7 @@ paths:
       operationId: createBridgeToken
       tags:
       - Bridge Tokens
-      summary: Create a bridge token for a user.
+      summary: Create a bridge token for a user
       requestBody:
         required: true
         content:
@@ -44,7 +44,7 @@ paths:
       operationId: createLinkAccessToken
       tags:
       - Bridge Tokens
-      summary: Create a link-access token.
+      summary: Create a link-access token
       requestBody:
         required: true
         content:
@@ -62,15 +62,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/BridgeToken'
 components:
-  parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
   schemas:
+    BridgeTokenRequest:
+      type: object
+      properties:
+        product_type:
+          type: string
+          description: The Truv product to initialize, for example employment or income.
+        tracking_info:
+          type: string
     BridgeToken:
       type: object
       properties:
@@ -81,14 +81,14 @@ components:
         expiration:
           type: string
           format: date-time
-    BridgeTokenRequest:
-      type: object
-      properties:
-        product_type:
-          type: string
-          description: The Truv product to initialize, for example employment or income.
-        tracking_info:
-          type: string
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
   securitySchemes:
     accessClientId:
       type: apiKey

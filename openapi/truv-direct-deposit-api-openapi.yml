@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Truv Admin Direct Deposit API
+  title: Truv Direct Deposit API
   description: Truv provides consumer-permissioned access to payroll, income, and employment data. This specification covers the Truv REST API for managing users, minting bridge tokens, working with links, and retrieving employment, income, pay statement, direct deposit, insurance, identity, and banking data, plus orders, tasks, and webhooks.
   termsOfService: https://truv.com/terms-of-service/
   contact:
@@ -25,7 +25,7 @@ paths:
       operationId: getDirectDepositReport
       tags:
       - Direct Deposit
-      summary: Retrieve the direct deposit report for a link.
+      summary: Retrieve the direct deposit report for a link
       responses:
         '200':
           description: A direct deposit report.
@@ -40,7 +40,7 @@ paths:
       operationId: getDepositSwitchReport
       tags:
       - Direct Deposit
-      summary: Retrieve the deposit switch report for a user.
+      summary: Retrieve the deposit switch report for a user
       responses:
         '200':
           description: A deposit switch report.
@@ -50,13 +50,6 @@ paths:
                 type: object
 components:
   parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
     LinkId:
       name: link_id
       in: path
@@ -64,6 +57,13 @@ components:
       schema:
         type: string
       description: The ID of the link.
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
   securitySchemes:
     accessClientId:
       type: apiKey
