@@ -114,6 +114,16 @@ paths:
                   type: object
 components:
   schemas:
+    WebhookRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The endpoint that will receive event notifications.
+        auth_token:
+          type: string
+        status:
+          type: string
     Webhook:
       type: object
       properties:
@@ -126,16 +136,6 @@ components:
         created_at:
           type: string
           format: date-time
-    WebhookRequest:
-      type: object
-      properties:
-        url:
-          type: string
-          description: The endpoint that will receive event notifications.
-        auth_token:
-          type: string
-        status:
-          type: string
   securitySchemes:
     accessClientId:
       type: apiKey

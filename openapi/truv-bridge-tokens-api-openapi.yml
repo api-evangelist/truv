@@ -63,14 +63,6 @@ paths:
                 $ref: '#/components/schemas/BridgeToken'
 components:
   schemas:
-    BridgeTokenRequest:
-      type: object
-      properties:
-        product_type:
-          type: string
-          description: The Truv product to initialize, for example employment or income.
-        tracking_info:
-          type: string
     BridgeToken:
       type: object
       properties:
@@ -81,6 +73,14 @@ components:
         expiration:
           type: string
           format: date-time
+    BridgeTokenRequest:
+      type: object
+      properties:
+        product_type:
+          type: string
+          description: The Truv product to initialize, for example employment or income.
+        tracking_info:
+          type: string
   parameters:
     UserId:
       name: user_id

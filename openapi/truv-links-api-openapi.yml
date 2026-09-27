@@ -94,22 +94,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Task'
 components:
-  parameters:
-    LinkId:
-      name: link_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the link.
-    TaskId:
-      name: task_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the task.
   schemas:
+    Link:
+      type: object
+      properties:
+        link_id:
+          type: string
+        user_id:
+          type: string
+        status:
+          type: string
+        provider_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
     Task:
       type: object
       properties:
@@ -125,20 +124,21 @@ components:
         finished_at:
           type: string
           format: date-time
-    Link:
-      type: object
-      properties:
-        link_id:
-          type: string
-        user_id:
-          type: string
-        status:
-          type: string
-        provider_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
+  parameters:
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the task.
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
   securitySchemes:
     accessClientId:
       type: apiKey

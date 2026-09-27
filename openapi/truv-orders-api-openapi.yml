@@ -179,20 +179,6 @@ paths:
                   type: object
 components:
   schemas:
-    Order:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        products:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
     OrderRequest:
       type: object
       properties:
@@ -208,6 +194,20 @@ components:
           type: array
           items:
             type: object
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
   parameters:
     OrderId:
       name: id
