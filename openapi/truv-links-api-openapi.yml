@@ -125,13 +125,6 @@ components:
           type: string
           format: date-time
   parameters:
-    TaskId:
-      name: task_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the task.
     LinkId:
       name: link_id
       in: path
@@ -139,6 +132,13 @@ components:
       schema:
         type: string
       description: The ID of the link.
+    TaskId:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the task.
   securitySchemes:
     accessClientId:
       type: apiKey
