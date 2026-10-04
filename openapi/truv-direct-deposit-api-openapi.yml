@@ -50,13 +50,6 @@ paths:
                 type: object
 components:
   parameters:
-    LinkId:
-      name: link_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the link.
     UserId:
       name: user_id
       in: path
@@ -64,6 +57,13 @@ components:
       schema:
         type: string
       description: The ID of the user.
+    LinkId:
+      name: link_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the link.
   securitySchemes:
     accessClientId:
       type: apiKey
