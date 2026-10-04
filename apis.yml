@@ -740,6 +740,9 @@ apis:
   - type: Documentation
     url: https://docs.truv.com/reference/webhooks_list
 common:
+- type: CapabilityMap
+  url: capabilities/truv-capability-edges.yml
+  name: Truv Business Capability Map
 - type: AgenticAccess
   url: agentic-access/truv-agentic-access.yml
 - type: TrustCenter
