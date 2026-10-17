@@ -93,14 +93,6 @@ paths:
         '204':
           description: User deleted.
 components:
-  parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
   schemas:
     UserRequest:
       type: object
@@ -135,6 +127,14 @@ components:
         created_at:
           type: string
           format: date-time
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
   securitySchemes:
     accessClientId:
       type: apiKey

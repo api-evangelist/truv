@@ -178,21 +178,15 @@ paths:
                 items:
                   type: object
 components:
+  parameters:
+    OrderId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the resource.
   schemas:
-    Order:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        products:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
     OrderRequest:
       type: object
       properties:
@@ -208,14 +202,20 @@ components:
           type: array
           items:
             type: object
-  parameters:
-    OrderId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the resource.
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        products:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
   securitySchemes:
     accessClientId:
       type: apiKey
